@@ -103,7 +103,7 @@ def largest_contiguous_subsum(arr)
   max
 end
 
- list = [2, 3, -6, 7, -6, 7]
+ list = [-5, -3, -1]
 p largest_contiguous_subsum(list)
 
 
