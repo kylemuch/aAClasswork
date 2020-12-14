@@ -1,5 +1,7 @@
 class MaxIntSet
   def initialize(max)
+    @store = Array.new(max, false)
+
   end
 
   def insert(num)
@@ -9,6 +11,7 @@ class MaxIntSet
   end
 
   def include?(num)
+    @store[num]
   end
 
   private
