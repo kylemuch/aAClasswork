@@ -103,11 +103,13 @@ class ResizingIntSet
   end
 
   def resize!
-    if @count >= num_buckets 
+    if @count > num_buckets 
       new_buckets = num_buckets * 2
       new_store = Array.new(new_buckets) { Array.new }
       @store.each do |el|
-        new_store[el % new_buckets] << el
+        el.each do |sub_el|
+          new_store[sub_el % new_buckets] << sub_el
+        end
       end
       @store = new_store
     end
