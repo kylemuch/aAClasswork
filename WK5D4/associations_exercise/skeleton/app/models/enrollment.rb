@@ -17,13 +17,10 @@ class Enrollment < ApplicationRecord
     )
 
     belongs_to(
-        :courses,
+        :course,
         foreign_key: :course_id,
         primary_key: :id,
         class_name: 'Course'
     )
-
-
-
 end
 
