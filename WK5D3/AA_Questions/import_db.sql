@@ -42,13 +42,13 @@ CREATE TABLE replies (
 );
 
 
--- CREATE TABLE question_likes (
---   user_id INTEGER,
---   question_id INTEGER,
+CREATE TABLE question_likes (
+  user_id INTEGER,
+  question_id INTEGER,
 
---   FOREIGN KEY (user_id) REFERENCES users(id),
---   FOREIGN KEY (question_id) REFERENCES questions(id)
--- );
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (question_id) REFERENCES questions(id)
+);
 
 INSERT INTO
   users(fname, lname)
@@ -57,6 +57,10 @@ VALUES ("Kyle", "Much"), ("Janette", "Tinoco"), ("Jim", "Krentist");
 INSERT INTO
   questions(id, user_id, title, body)
   VALUES (10, 1, "Powering On", "How do I turn on my computer?"), (11, 2, "Spilled Water", "How do I get water out of my keyboard...");
+
+INSERT INTO 
+  replies(id, subject_question, top_level, parent_reply, author, body)
+    VALUES (101, 10, true, )
 
 
 

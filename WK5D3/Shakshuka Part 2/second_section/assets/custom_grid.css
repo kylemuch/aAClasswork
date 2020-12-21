@@ -1,0 +1,10 @@
+.col-2-of-3 {
+  display: inline-block;
+  width: 66%;
+}
+
+.col-1-of-3 {
+  display: inline-block;
+  width: 33%;
+  float: left;
+}

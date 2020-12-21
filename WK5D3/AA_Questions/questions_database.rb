@@ -1,3 +1,4 @@
+require 'byebug'
 require 'sqlite3'
 require 'singleton'
 
@@ -12,6 +13,12 @@ class QuestionsDatabase < SQLite3::Database
 end
 
 class User
+
+  def self.find_by_user_id(user_id)
+        data = QuestionsDatabase.instance.execute("SELECT * FROM users WHERE id = #{user_id}")
+        
+        self.new(data[0])
+  end
 
   def initialize(options)
     @id = options['id']
@@ -28,6 +35,9 @@ end
 
 
 class Question
+  def self.find_by_author_id(author_id)
+    data = QuestionsDatabase.instance.execute("SELECT * FROM questions WHERE user_id == #{author_id}")
+  end
 
   def initialize(options)
     @id = options['id']
