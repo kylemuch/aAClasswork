@@ -16,7 +16,24 @@ class UsersController < ApplicationController
     end
 
     def show
-        render json: params
+        user = params[:id]
+
+        render json: User.find(user)
     end
-    
+
+    def update
+        user = User.find(params[:id])
+
+        user.update(params.require(:user).permit(:name, :email))
+
+        render json: user
+    end
+
+    def destroy
+        user = User.find(params[:id])
+        user.destroy 
+
+        render json: user
+    end
+
 end
