@@ -4,25 +4,39 @@ class User < ApplicationRecord
   validates :password, allow_nil: true
   after_initialize :ensure_session_token
 
-  attr_reader
+  attr_reader :password
+
+  def self.find_by_credentials(username, password)
+    user = User.find_by(username: username)
+
+    if user && user.is_password?(password)
+      user
+    else
+      nil
+    end
+
+  end 
 
   def ensure_session_token
-    self.session_token ||= SecureRandom::urlsafe_base64 
-    #assigns it             random string generated 
+    self.session_token ||= SecureRandom::urlsafe_base64  
   end
 
   def reset_session_token! 
     self.session_token = SecureRandom::urlsafe_base64 
-    # we want to change the session_token 
-    self.save! #we want to fail LOUDLY
+    
+    self.save! 
 
-    self.session_token #we want to return this value via the getter method 
+    self.session_token 
   end
 
   def password=(password)
     password_digest = BCrypt::Password.create(password)
 
     @password = password
+  end
+
+  def is_password?(password)
+    BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
 end
