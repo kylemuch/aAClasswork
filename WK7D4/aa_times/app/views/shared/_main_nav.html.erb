@@ -18,9 +18,18 @@
 
 	<nav class="right-nav">
 		<ul>
-			<li><button id='subscribe-nav-btn'>Subscribe now</button></li>
-			<li><button id='login-nav-btn'>Log In</button></li>
-			<li><button id="main-nav-gear"><i class="fas fa-cogs"></i></button></li>
+			<li>
+				<button id='subscribe-nav-btn'>Subscribe now</button>
+			</li>
+			<li>
+				<button id='login-nav-btn'>Log In</button>
+			</li>
+			<li id="gear-dropdown-btn-li">
+				<button id="gear-dropdown-btn">
+					<i class="fas fa-cogs"></i>
+				</button>
+				<%= render partial: 'shared/gear_dropdown' %>	
+			</li>
 		</ul>
 	</nav>
 </header>

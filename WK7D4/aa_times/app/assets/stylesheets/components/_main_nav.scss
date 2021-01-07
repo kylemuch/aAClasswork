@@ -67,13 +67,23 @@
   border: 1px solid $darkest-blue;
 }
 
-#main-nav-gear {
+#gear-dropdown-btn {
   background-color: $lightest-gray;
   color: black;
 }
 
-#main-nav-gear:hover,
+#gear-dropdown-btn:hover,
 #search-modal-btn:hover,
 #sections-sidebar-btn:hover {
   background: $light-gray;
+}
+
+#gear-dropdown-btn-li {
+  position: relative;
+}
+
+#gear-dropdown-btn-li:hover {
+  #gear-dropdown {
+    display: block;
+  }
 }
