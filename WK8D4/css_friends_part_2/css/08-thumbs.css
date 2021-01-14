@@ -1,2 +1,19 @@
 /* PHASE 2: Thumbs */
 
+.friends-ul {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.thumb {
+  margin: 5px;
+  flex: 0 0 25%;
+  height: 50px;
+}
+
+.thumb > img {
+  border-radius: 10px;
+  border: 1px solid black;
+}
