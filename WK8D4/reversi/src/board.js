@@ -14,6 +14,12 @@ function _makeGrid () {
   while (grid.length < 8) {
     grid.push(row);
   }
+  
+  grid[3][4] = new Piece('white');
+  grid[4][3] = new Piece('white');
+  grid[3][3] = new Piece('black');
+  grid[4][4] = new Piece('black');
+
   return grid;
 }
 
@@ -126,3 +132,5 @@ if (typeof window === 'undefined'){
   module.exports = Board;
 }
 // DON'T TOUCH THIS CODE
+
+let board = new Board();
