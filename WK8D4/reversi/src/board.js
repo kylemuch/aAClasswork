@@ -110,10 +110,27 @@ Board.prototype.isOccupied = function (pos) {
 // ];
 
 Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip){
+  piecesToFlip ||= [];
+
   if (!this.isValidPos(pos)) {
     return [];
   }
-  let current_pos = pos
+
+  if (!this.isOccupied(pos)) {
+    return [];
+  }
+  
+  let nextPosition = [pos[0] + dir[0], pos[1] + dir[1]]; 
+
+  if (color === this.getPiece(nextPosition).color) {
+    return piecesToFlip;
+  } 
+
+  let toFlip = this.getPiece(pos);
+
+  piecesToFlip.push(pos);
+  
+  return this._positionsToFlip(nextPosition, color, dir, piecesToFlip)
 };
 
 /**
