@@ -110,25 +110,29 @@ Board.prototype.isOccupied = function (pos) {
 // ];
 
 Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip){
-  piecesToFlip ||= [];
+  
+  if (!piecesToFlip) {
+    piecesToFlip = [];
+  }
 
   if (!this.isValidPos(pos)) {
     return [];
   }
 
-  if (!this.isOccupied(pos)) {
+  if (this.isOccupied(pos)) {
     return [];
   }
   
-  let nextPosition = [pos[0] + dir[0], pos[1] + dir[1]]; 
+  let nextPosition = [pos[0] + dir[0], pos[1] + dir[1]];
+  
+  if (this.isOccupied(nextPosition) && 
+      this.getPiece(nextPosition).color !==  color){
+        piecesToFlip.push(nextPosition);
+  }
 
   if (color === this.getPiece(nextPosition).color) {
     return piecesToFlip;
   } 
-
-  let toFlip = this.getPiece(pos);
-
-  piecesToFlip.push(pos);
   
   return this._positionsToFlip(nextPosition, color, dir, piecesToFlip)
 };
@@ -189,3 +193,48 @@ if (typeof window === 'undefined'){
 // DON'T TOUCH THIS CODE
 
 let board = new Board();
+
+testBoardLongHorzDiagonal = new Board();
+
+testBoardLongHorzDiagonal.grid[1][1] = new Piece("black")
+testBoardLongHorzDiagonal.grid[1][3] = new Piece("black")
+testBoardLongHorzDiagonal.grid[1][4] = new Piece("white")
+testBoardLongHorzDiagonal.grid[1][6] = new Piece("white")
+testBoardLongHorzDiagonal.grid[1][7] = new Piece("white")
+
+testBoardLongHorzDiagonal.grid[2][0] = new Piece("black")
+testBoardLongHorzDiagonal.grid[2][2] = new Piece("white")
+testBoardLongHorzDiagonal.grid[2][3] = new Piece("white")
+testBoardLongHorzDiagonal.grid[2][4] = new Piece("black")
+testBoardLongHorzDiagonal.grid[2][5] = new Piece("black")
+testBoardLongHorzDiagonal.grid[2][7] = new Piece("black")
+
+testBoardLongHorzDiagonal.grid[3][0] = new Piece("black")
+testBoardLongHorzDiagonal.grid[3][2] = new Piece("white")
+testBoardLongHorzDiagonal.grid[3][3] = new Piece("white")
+testBoardLongHorzDiagonal.grid[3][4] = new Piece("black")
+testBoardLongHorzDiagonal.grid[3][5] = new Piece("black")
+testBoardLongHorzDiagonal.grid[3][7] = new Piece("black")
+
+testBoardLongHorzDiagonal.grid[4][0] = new Piece("black")
+testBoardLongHorzDiagonal.grid[4][1] = new Piece("black")
+testBoardLongHorzDiagonal.grid[4][3] = new Piece("black")
+testBoardLongHorzDiagonal.grid[4][4] = new Piece("white")
+testBoardLongHorzDiagonal.grid[4][6] = new Piece("white")
+testBoardLongHorzDiagonal.grid[4][7] = new Piece("black")
+
+testBoardLongHorzDiagonal.grid[5][0] = new Piece("white")
+
+testBoardLongHorzDiagonal.grid[6][2] = new Piece("white")
+testBoardLongHorzDiagonal.grid[6][3] = new Piece("white")
+testBoardLongHorzDiagonal.grid[6][4] = new Piece("white")
+testBoardLongHorzDiagonal.grid[6][5] = new Piece("white")
+testBoardLongHorzDiagonal.grid[6][6] = new Piece("black")
+
+testBoardLongHorzDiagonal.grid[7][1] = new Piece("black")
+testBoardLongHorzDiagonal.grid[7][2] = new Piece("white")
+testBoardLongHorzDiagonal.grid[7][3] = new Piece("white")
+testBoardLongHorzDiagonal.grid[7][4] = new Piece("white")
+testBoardLongHorzDiagonal.grid[7][5] = new Piece("white")
+
+testBoardLongHorzDiagonal._positionsToFlip([1, 0], "white", [1, 0])
