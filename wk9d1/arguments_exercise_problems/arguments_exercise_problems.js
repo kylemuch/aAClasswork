@@ -1,4 +1,3 @@
-
 function sum() {
   let ouput = 0;
 
@@ -9,18 +8,18 @@ function sum() {
   return ouput;
 }
 
-console.log(sum(1,3,5));
+// console.log(sum(1, 3, 5));
 
 function otherSum(name, ...args) {
   let output = 0;
   console.log(name);
 
-  args.forEach(el => output += el);
-  
+  args.forEach((el) => (output += el));
+
   return output;
 }
 
-console.log(otherSum(1,2,3))
+// console.log(otherSum(1, 2, 3));
 
 class Cat {
   constructor(name) {
@@ -42,12 +41,35 @@ class Dog {
 const markov = new Cat("Markov");
 const pavlov = new Dog("Pavlov");
 
-Function.prototype.myBind = function(newThis, ...args) {
-  console.log(this);
+Function.prototype.myBind = function (dogThis, ...args) {
+  let catThis = this;
+  let catArgs = args;
+  // debugger;
+  return function (...dogArgs) {
+    return catThis.apply(dogThis, catArgs.concat(dogArgs));
+  };
+};
 
-  // let boundFunc(...boundedArgs) = this.apply(newThis, boundedArgs.concat(args));
+// markov.says.myBind(pavlov, "meow", "Kush")();
+// markov.says.myBind(pavlov)("meow", "Kush");
 
-  return boundFunc();
+function curriedSum(numArgs) {
+  const numbers = [];
+
+  function _curriedSum(num) {
+    numbers.push(num);
+
+    if (numbers.length === numArgs) {
+      let output = 0;
+      numbers.forEach((el) => (output += el));
+      return output;
+    } else {
+      return _curriedSum;
+    }
+  }
+
+  return _curriedSum;
 }
 
-markov.says.myBind(pavlov, "meow", "Kush");
+// let cur_sum = curriedSum(2);
+// console.log(cur_sum(1)(9));
