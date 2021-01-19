@@ -20,6 +20,19 @@ Array.prototype.bubbleSort = function() {
   return arr;  
 }
 
-let testArr = [5,4,3,2,1];
+String.prototype.substrings = function() {
+  let subStrings = [];
+  let str = this;
 
-console.log(testArr.bubbleSort());
+  for (let i = 0; i < str.length - 1; i += 1) {
+    for (let j = i + 1; j < str.length; j += 1) {
+      subStrings.push(str.slice(i, j+1));
+    }
+  }
+
+  return subStrings;
+}
+
+let testString = 'Kyle';
+console.log(testString.substrings())
+
