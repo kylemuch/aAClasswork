@@ -34,6 +34,29 @@ function exponent(base, exp) {
 
 }
 
-console.log(exponent(2,3))
+// console.log(exponent(2,3))
+
+function exponent2(base, exp) {
+  if (exp % 2 === 0) {
+    return (exponent(base, exp / 2) ** 2);
+  } else {
+    return (base * (exponent(base, (exp - 1) / 2) ** 2));
+  }
+}
+
+// console.log(exponent2(2,5));
 
 
+function fibonacci(n) {
+  if (n === 0) {
+    return 0;
+  }
+
+  if (n === 1 || n === 2) {
+    return 1;
+  }
+
+  return (fibonacci(n - 1) + fibonacci(n - 2));
+}
+
+console.log(fibonacci(45));
