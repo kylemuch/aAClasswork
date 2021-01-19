@@ -6,19 +6,18 @@ Array.prototype.bubbleSort = function() {
   while (!sorted) {
     sorted = true;
     for (let i = 0; i < arr.length; i += 1) {
-      let tempStorage;
-  
       if (arr[i] > arr[i + 1]) {
         sorted = false;
-        tempStorage = arr[i];
-        arr[i] = arr[i + 1];
-        arr[i + 1] = tempStorage;
+        [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
       }
     }
   }
 
   return arr;  
 }
+
+let testArr = [7,6,7,3,1,2, -1];
+console.log(testArr.bubbleSort());
 
 String.prototype.substrings = function() {
   let subStrings = [];
@@ -33,6 +32,11 @@ String.prototype.substrings = function() {
   return subStrings;
 }
 
-let testString = 'Kyle';
-console.log(testString.substrings())
+// let testString = 'Kyle';
+// console.log(testString.substrings())
 
+let destArr = [0,1,2,3];
+
+[destArr[1], destArr[2]] = [destArr[2], destArr[1]]
+
+console.log(destArr);
